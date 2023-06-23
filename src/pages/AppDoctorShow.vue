@@ -7,19 +7,21 @@
         data() {
             return {
                 store,
+                doctor: null,
             }
         },
         mounted() {
                 const slug = this.$route.params.slug;
                 
-                axios.get(`${this.store.baseUrlnoApi}/api/doctors/${slug}`)
+                axios.get(`${this.store.baseUrl}/doctors/${slug}`)
                     .then(response => {
-                        console.log(response);
                         if(response.data.success == true) {
-                            this.store.doctor = response.data.doctor;
-                            console.log(this.store.doctor);
+                            this.doctor = response.data.doctor;
+                            console.log(this.doctor);
                             
 
+                        } else {
+                            this.$router.push({name: 'not-found'});
                         }
                     })
         
@@ -29,6 +31,12 @@
 </script>
 
 <template>
+
+    <div v-if="doctor">
+        <h3 >{{ doctor['address'] }} v</h3>
+        <h3 >{{ doctor['slug'] }} v</h3>
+        <h3 >{{ doctor['phone'] }} v</h3>
+    </div>
     
 </template>
 

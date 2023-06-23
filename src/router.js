@@ -23,7 +23,7 @@ const router = createRouter({
             component: AppDoctorShow
         },
         {
-            path: '/:pathMatch(.)',
+            path: '/:pathMatch(.*)*',
             name: 'not-found',
             component: AppNotFound
         }
