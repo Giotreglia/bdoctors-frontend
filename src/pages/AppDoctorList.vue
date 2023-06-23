@@ -15,12 +15,12 @@ export default {
             axios.get(url)
                 .then(response => {
                     this.store.doctors = response.data.results.data;
-                    console.log(response.data.results.data);
+                    
                 })
         },
         getInputSpec(specialization) {
             this.store.inputSpecialization = specialization;
-            console.log(specialization);
+            
         }
     },
     mounted() {
@@ -98,7 +98,7 @@ export default {
                                 the
                                 card's
                                 content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <router-link :to="{name: 'doctor_page', params: {slug: doctor.slug}}" class="btn btn-primary">Go somewhere</router-link>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,6 @@ export default {
   methods: {
     getInputSpec(specialization) {
       this.store.inputSpecialization = specialization;
-      console.log(specialization);
     }
   },
 }
