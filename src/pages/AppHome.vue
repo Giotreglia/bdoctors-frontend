@@ -27,19 +27,23 @@ export default {
         <div class="jumbo-img position-absolute">
           <img class="h-100" src="/doc1.png" alt="">
         </div>
-        <div class="input-group input-group-lg" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg" placeholder="es. Cardiologo" v-model="this.store.inputSpecialization">
-          <div class="dropdown w-100">
-            <ul class="dropdown-menu w-100">
-              <li v-for="( specialization, i ) in  this.store.specializations "><a class="dropdown-item" href="#"
-                  @click="this.getInputSpec(specialization.name)">{{
-                    specialization.name }}</a></li>
-            </ul>
+        <div class="d-flex">
+          <div class="input-group input-group-lg" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-lg" placeholder="es. Cardiologo"
+              v-model="this.store.inputSpecialization">
+            <div class="dropdown w-100">
+              <ul class="dropdown-menu w-100">
+                <li v-for="( specialization, i ) in  this.store.specializations "><a class="dropdown-item" href="#"
+                    @click="this.getInputSpec(specialization.name)">{{
+                      specialization.name }}</a></li>
+              </ul>
+            </div>
           </div>
+          <router-link :to="{ name: 'doctor_list' }" id="search-btn" class="btn btn-lg z-3"
+            type="button">Cerca</router-link>
         </div>
-        <router-link :to="{ name: 'doctor_list' }" type="button">Cerca</router-link>
       </div>
     </div>
   </div>
@@ -56,6 +60,7 @@ export default {
 #search-btn {
   background-color: $secondary-color;
   color: white;
+  border-radius: 0 12px 12px 0;
 }
 
 .jumbo-img {
