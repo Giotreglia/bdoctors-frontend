@@ -8,8 +8,9 @@ export default {
     }
   },
   methods: {
-    getInputSpec() {
+    getInputSpec(specialization) {
       this.store.inputSpecialization = specialization;
+      console.log(specialization);
     }
   },
 }
@@ -38,7 +39,7 @@ export default {
           <div class="dropdown w-100">
             <ul class="dropdown-menu w-100">
               <li v-for="(specialization, i) in this.store.specializations"><a class="dropdown-item" href="#"
-                  @onclick="this.getInputSpec()">{{
+                  @click="this.getInputSpec(specialization.name)">{{
                     specialization.name }}</a></li>
             </ul>
           </div>
