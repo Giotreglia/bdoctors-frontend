@@ -31,7 +31,7 @@ export default {
           <img class="h-100" src="../../public/doc1.png" alt="">
         </div>
         <span class="fs-4 d-block mb-5">Cerca tra 200 000 Specialisti e Medici di Medicina Generale.</span>
-        <div class="input-group input-group-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="input-group input-group-lg" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa-solid fa-magnifying-glass"></i></span>
           <input type="text" class="form-control" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-lg" placeholder="es. Cardiologo" v-model="this.store.inputSpecialization">
