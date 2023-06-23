@@ -98,7 +98,7 @@ export default {
                                 the
                                 card's
                                 content.</p>
-                            <router-link :to="{name: 'doctor_page', params: {slug: doctor.slug}}" class="btn btn-primary">Go somewhere</router-link>
+                            <router-link :to="{name: 'doctor_page', params: {slug: doctor.slug}}" class="btn btn-primary">Vedi dettaglio Dottore</router-link>
                         </div>
                     </div>
                 </div>
