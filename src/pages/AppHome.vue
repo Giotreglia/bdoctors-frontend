@@ -33,7 +33,7 @@ export default {
 
 #jumbotron {
   background-color: $primary-color;
-  padding: 250px 0 70px;
+  padding: 350px 0 70px;
 }
 
 #search-btn {
