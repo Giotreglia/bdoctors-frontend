@@ -7,6 +7,11 @@ export default {
       store,
     }
   },
+  methods: {
+    getInputSpec() {
+      this.store.inputSpecialization = specialization;
+    }
+  },
 }
 
 
@@ -28,12 +33,13 @@ export default {
         <div class="input-group input-group-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa-solid fa-magnifying-glass"></i></span>
           <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg" placeholder="es. Cardiologo">
+            aria-describedby="inputGroup-sizing-lg" placeholder="es. Cardiologo" v-model="this.store.inputSpecialization">
           <button id="search-btn" class="btn btn-lg" type="button">Cerca</button>
           <div class="dropdown w-100">
             <ul class="dropdown-menu w-100">
-              <li v-for="specialization in this.store.specializations"><a class="dropdown-item" href="#">{{
-                specialization.name }}</a></li>
+              <li v-for="(specialization, i) in this.store.specializations"><a class="dropdown-item" href="#"
+                  @onclick="this.getInputSpec()">{{
+                    specialization.name }}</a></li>
             </ul>
           </div>
         </div>
