@@ -40,4 +40,8 @@ export default {
 
 <style lang="scss" scoped>
 @import './styles/general.scss';
+
+main {
+  margin-top: 70px;
+}
 </style>
