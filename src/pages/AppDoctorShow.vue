@@ -32,14 +32,35 @@
 
 <template>
 
-    <div v-if="doctor">
-        <h3 >{{ doctor['address'] }} v</h3>
-        <h3 >{{ doctor['slug'] }} v</h3>
-        <h3 >{{ doctor['phone'] }} v</h3>
+<div class="container">
+        <div class="row py-5">
+            <div class="col-10">
+                <div class="card rounded-5 bg-info-subtle">
+                        
+                    <div v-if="doctor" class="card-body text-center card-single">
+                        <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top">
+                        <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg">
+                        <h1 class="card-title mt-3">{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
+                        <h4 class="card-title text-center mb-3">Slug: {{ doctor.slug }}</h4>
+                        <h4 class="card-title text-center mb-3">Indirizzo: {{doctor.address}}</h4>
+                        <h4 class="card-title text-center mb-3">Mail: {{doctor.user.email}}</h4>
+                        <h4 class="text-center mb-4"> Telefono: {{ doctor.phone }}</h4>
+                        <h4 class="text-center mb-4"> Curriculum: {{ doctor.curriculum}}</h4>                                                       
+                    </div>  
+
+                </div>
+            </div>
+        </div>
     </div>
+
     
 </template>
 
 <style lang="scss" scoped>
-
+ img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+ }
 </style>
