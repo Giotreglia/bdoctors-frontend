@@ -27,10 +27,10 @@ export default {
     <div class="mb-4 rounded-3">
       <div class="container position-relative">
         <h1 class="display-5 fw-bold text-light">Cerca il tuo dottore</h1>
+        <span class="fs-4 d-block mb-5">Cerca tra 200 000 Specialisti e Medici di Medicina Generale.</span>
         <div class="jumbo-img position-absolute">
           <img class="h-100" src="../../public/doc1.png" alt="">
         </div>
-        <span class="fs-4 d-block mb-5">Cerca tra 200 000 Specialisti e Medici di Medicina Generale.</span>
         <div class="input-group input-group-lg" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa-solid fa-magnifying-glass"></i></span>
           <input type="text" class="form-control" aria-label="Sizing example input"

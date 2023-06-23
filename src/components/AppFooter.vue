@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <footer>
+    <footer class="mt-5">
         <div class="container up d-flex justify-content-between">
             <div class="side-links" v-for="sides in 3">
                 <ul>
