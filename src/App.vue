@@ -20,8 +20,4 @@ export default {
 
 <style lang="scss" scoped>
 @import './styles/general.scss';
-
-main {
-  padding-top: 70px;
-}
 </style>
