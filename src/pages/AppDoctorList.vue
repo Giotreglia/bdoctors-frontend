@@ -92,9 +92,8 @@ export default {
                 <div class="ms-col" v-for=" doctor  in  this.store.doctors ">
                     <div class="card">
 
-                        <img v-if="doctor.photo"
-                            @error="imgUrlAlt(`https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg`)"
-                            :src="imgUrl" class="card-img-top" :alt="`immagine-profilo-di-${doctor.user.name}`">
+                        <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top"
+                            :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
                             :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body">

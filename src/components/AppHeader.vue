@@ -12,7 +12,8 @@ export default {
                     label: "Accedi all'area personale",
                     routeName: 'http://127.0.0.1:8000/login'
                 }
-            ]
+            ],
+
         }
     }
 }    
@@ -23,7 +24,7 @@ export default {
             <router-link :to="{ name: 'home' }" class="navbar-brand">BDoctors</router-link>
 
             <div class="dropdown">
-                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                <button id="area-personale" class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Sei un professionista sanitario?
                 </button>
@@ -44,5 +45,11 @@ export default {
     height: 70px;
     width: 100%;
     background-color: white;
+}
+
+@media all and (max-width: 500px) {
+    #area-personale {
+        width: 200px;
+    }
 }
 </style>
