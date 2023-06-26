@@ -3,10 +3,11 @@ import { store } from '../store.js';
 import axios from 'axios';
 import AppReviewForm from '../components/AppReviewForm.vue';
 import AppVoteForm from '../components/AppVoteForm.vue';
+import AppMessageForm from '../components/AppMessageForm.vue'
 
 export default {
     name: 'AppDoctorShow',
-    
+
     data() {
         return {
             store,
@@ -15,7 +16,8 @@ export default {
     },
     components: {
         AppReviewForm,
-        AppVoteForm
+        AppVoteForm,
+        AppMessageForm
     },
     mounted() {
         const slug = this.$route.params.slug;
@@ -59,23 +61,23 @@ export default {
                 </div>
 
                 <div class="py-5">
+                    <AppMessageForm :doctor="doctor">
+                    </AppMessageForm>
+                </div>
 
+                <div class="py-5">
                     <AppReviewForm :doctor="doctor">
-    
                     </AppReviewForm>
-
                 </div>
 
                 <div>
-                    
-                    <AppVoteForm :doctor="doctor">
-    
-                    </AppVoteForm>
 
+                    <AppVoteForm :doctor="doctor">
+                    </AppVoteForm>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 
