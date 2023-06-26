@@ -9,37 +9,23 @@ export default {
         return {
             store,
             name: '',
+            surname: '',
             email: '',
             content: '',
             success: false,
             sending: false,
             errors: {},
-            csrfToken: '',
         };
     },
-    mounted() {
-        this.fetchCsrfToken();
-    },
     methods: {
-        fetchCsrfToken() {
-            axios
-                .get(`${this.store.baseUrlnoApi}/csrf-token`)
-                .then(response => {
-                    this.csrfToken = response.data.csrfToken;
-                    console.log(this.csrfToken);
-                })
-                .catch(error => {
-                    console.error('Error fetching CSRF token:', error);
-                });
-        },
         sendForm() {
             this.success = false;
             this.sending = true;
             this.errors = {};
 
             const payload = {
-                _token: this.csrfToken,
                 name: this.name,
+                surname: this.surname,
                 email: this.email,
                 content: this.content,
                 date: luxon.DateTime.now().toFormat('yyyy-MM-dd'),
@@ -53,6 +39,7 @@ export default {
                     if (response.data.success) {
                         // Reset the form
                         this.name = '';
+                        this.surname = '';
                         this.email = '';
                         this.content = '';
                         this.success = true;
@@ -75,13 +62,12 @@ export default {
 
 
 <template>
+    <h3>Contatta il dottore</h3>
     <div v-if="success" class="alert alert-success" role="alert">
         Grazie di avermi contattato, ti risponderò entro 48 ore lavorative!
     </div>
 
     <form @submit.prevent="sendForm()">
-
-        <input type="hidden" name="_token" :value="csrfToken">
 
         <div class="mb-3">
             <label for="email" class="form-label">La tua email</label>
@@ -94,6 +80,14 @@ export default {
             <label for="name" class="form-label">Il tuo nome</label>
             <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" id="name" v-model="name">
             <div class="invalid-feedback" v-for="error in errors.name">
+                {{ error }}
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="surname" class="form-label">Il tuo cognome</label>
+            <input type="text" class="form-control" :class="{ 'is-invalid': errors.surname }" id="surname"
+                v-model="surname">
+            <div class="invalid-feedback" v-for="error in errors.surname">
                 {{ error }}
             </div>
         </div>

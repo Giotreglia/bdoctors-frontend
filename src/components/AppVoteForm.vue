@@ -1,21 +1,21 @@
 <script>
-    import { store } from '../store.js';
-    import axios from 'axios';
-    
-    export default {
-        name: 'AppVoteForm',
-        props: ['doctor'],
-        data() {
-            return {
-                store,
-                star: "",
-                success: false,
-                sending: false,
-                errors: {},
-            }
-        },
-        methods: {
-            sendForm() {
+import { store } from '../store.js';
+import axios from 'axios';
+
+export default {
+    name: 'AppVoteForm',
+    props: ['doctor'],
+    data() {
+        return {
+            store,
+            star: "",
+            success: false,
+            sending: false,
+            errors: {},
+        }
+    },
+    methods: {
+        sendForm() {
             this.success = false;
             this.sending = true;
             this.errors = {};
@@ -47,30 +47,29 @@
                 });
 
         }
-        }
     }
+}
 
 </script>
 
 <template>
+    <h3>Dai un voto al dottore</h3>
     <div v-if="success" class="alert alert-success" role="alert">
-            Grazie del voto!
-        </div>
+        Grazie del voto!
+    </div>
 
-        <form @submit.prevent="sendForm()">
-            <div class="mb-3">
-                <label for="star" class="form-label">Inserisci Voto</label>
-                <input type="star" class="form-control" :class="{ 'is-invalid': errors.star }" id="star" v-model="star">
-                <div class="invalid-feedback" v-for="error in errors.star">
-                    {{ error }}
-                </div>
+    <form @submit.prevent="sendForm()">
+        <div class="mb-3">
+            <label for="star" class="form-label">Inserisci Voto</label>
+            <input type="star" class="form-control" :class="{ 'is-invalid': errors.star }" id="star" v-model="star">
+            <div class="invalid-feedback" v-for="error in errors.star">
+                {{ error }}
             </div>
-            <button type="submit" class="btn btn-primary" :disabled="sending">
-                {{ sending ? 'Invio in corso...' : 'Invia recensione' }}
-            </button>
-        </form>
+        </div>
+        <button type="submit" class="btn btn-primary" :disabled="sending">
+            {{ sending ? 'Invio in corso...' : 'Invia voto' }}
+        </button>
+    </form>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
