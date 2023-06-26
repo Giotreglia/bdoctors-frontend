@@ -67,4 +67,16 @@ export default {
   bottom: 0;
   right: 0;
 }
+
+@media all and (max-width: 1200px) {
+  .jumbo-img {
+    height: 400px;
+  }
+}
+
+@media all and (max-width: 992px) {
+  .jumbo-img {
+    display: none;
+  }
+}
 </style>

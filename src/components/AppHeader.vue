@@ -5,28 +5,30 @@ export default {
         return {
             linksMenu: [
                 {
-                    label: 'Login',
-                    routeName: 'login'
-                }]
+                    label: 'Registrati',
+                    routeName: 'http://127.0.0.1:8000/register'
+                },
+                {
+                    label: "Accedi all'area personale",
+                    routeName: 'http://127.0.0.1:8000/login'
+                }
+            ]
         }
     }
 }    
 </script>
 <template>
-    <nav class="my-color navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">BDoctors</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="my_collapse collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0 w-100 d-flex justify-content-between">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item" v-for="link in linksMenu">
-                        <a href="" class="nav-link active">{{ link.label }}</a>
+    <nav class="my-color navbar fixed-top">
+        <div class="container-fluid my-color d-flex justify-content-between align-items-center px-4">
+            <router-link :to="{ name: 'home' }" class="navbar-brand">BDoctors</router-link>
+
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Sei un professionista sanitario?
+                </button>
+                <ul class="dropdown-menu">
+                    <li v-for="link in  linksMenu "><a class="dropdown-item" :href="link.routeName">{{ link.label }}</a>
                     </li>
 
                 </ul>

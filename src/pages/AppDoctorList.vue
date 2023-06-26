@@ -7,6 +7,7 @@ export default {
     data() {
         return {
             store,
+            imgUrl: ""
         }
     },
     methods: {
@@ -15,12 +16,15 @@ export default {
             axios.get(url)
                 .then(response => {
                     this.store.doctors = response.data.results.data;
-                    
+                    imgUrlAlt(`${store.baseUrlnoApi}/storage/${doctor.photo}`)
                 })
         },
         getInputSpec(specialization) {
             this.store.inputSpecialization = specialization;
-            
+
+        },
+        imgUrlAlt(url) {
+            this.imgUrl = url
         }
     },
     mounted() {
@@ -64,7 +68,8 @@ export default {
                         <label class="btn btn-outline-dark" for="btnradio">All</label>
                     </div>
                 </div>
-                <div class="btn-group col-5 d-flex flex-column" role="group" aria-label="Basic radio toggle button group">
+                <div class="btn-group col-5 d-flex flex-column align-items-end" role="group"
+                    aria-label="Basic radio toggle button group">
                     <h4>Filtra per media voto</h4>
                     <div class="d-flex">
                         <div v-for="(star, i) in  5 ">
@@ -83,14 +88,15 @@ export default {
                 class="btn btn-lg z-3 btn-success m-3" type="button">Cerca</router-link>
         </div>
         <div class="row">
-            <div v-if="this.store.doctors.length > 0">
-                <div class="col-3" v-for=" doctor  in  this.store.doctors ">
-                    <div class="card" style="width: 18rem;">
+            <div v-if="this.store.doctors.length > 0" class="d-flex flex-wrap justify-content-between ms-gap">
+                <div class="ms-col" v-for=" doctor  in  this.store.doctors ">
+                    <div class="card">
 
-                        <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top"
-                            :alt="`immagine-profilo-di${doctor.user.name}`">
+                        <img v-if="doctor.photo"
+                            @error="imgUrlAlt(`https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg`)"
+                            :src="imgUrl" class="card-img-top" :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
-                            :alt="`immagine-profilo-di${doctor.user.name}`">
+                            :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body">
                             <h5 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk
@@ -98,7 +104,8 @@ export default {
                                 the
                                 card's
                                 content.</p>
-                            <router-link :to="{name: 'doctor_page', params: {slug: doctor.slug}}" class="btn btn-primary">Vedi dettaglio Dottore</router-link>
+                            <router-link :to="{ name: 'doctor_page', params: { slug: doctor.slug } }"
+                                class="btn ms-bg-primary">Vedi dettaglio Dottore</router-link>
                         </div>
                     </div>
                 </div>
@@ -112,4 +119,16 @@ export default {
 
 <style lang="scss" scoped>
 @import '../styles/partials/_variables.scss';
+
+.ms-bg-primary {
+    background-color: $primary-color;
+}
+
+.ms-gap {
+    gap: 12px;
+}
+
+.ms-col {
+    width: calc((100% / 4) - 12px);
+}
 </style>

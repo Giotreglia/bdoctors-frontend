@@ -42,6 +42,6 @@ export default {
 @import './styles/general.scss';
 
 main {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 </style>
