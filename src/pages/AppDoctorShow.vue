@@ -1,60 +1,22 @@
 <script>
 import { store } from '../store.js';
 import axios from 'axios';
+import AppReviewForm from '../components/AppReviewForm.vue';
+import AppVoteForm from '../components/AppVoteForm.vue';
 
 export default {
-    name: 'AppDoctorList',
+    name: 'AppDoctorShow',
+    
     data() {
         return {
             store,
             doctor: null,
-            name: '',
-            email: '',
-            message: '',
-            success: false,
-            sending: false,
-            errors: {},
         }
     },
-    methods: {
-        sendForm() {
-            this.success = false;
-            this.sending = true;
-            this.errors = {};
-
-            let splitslug = this.doctor.slug.split('-');
-            const payload = {
-                name: this.name,
-                email: this.email,
-                message: this.message,
-                date: luxon.DateTime.now().toFormat("yyyy-MM-dd"),
-                doctor_id: splitslug[splitslug.length - 1]
-            }
-
-            axios.post(`${this.store.baseUrl}/api/messages`, payload)
-                .then(response => { //200
-
-                    console.log(payload);
-                    if (response.data.success) {
-                        //resetto il form
-                        this.name = '';
-                        this.email = '';
-                        this.message = '';
-                        this.success = true;
-                    } else {
-                        this.errors = response.data.errors;
-                        console.log(this.errors);
-                    }
-
-                    this.sending = false;
-
-                }).catch(error => { //>=400
-                    this.sending = false;
-                });
-
-        }
+    components: {
+        AppReviewForm,
+        AppVoteForm
     },
-
     mounted() {
         const slug = this.$route.params.slug;
 
@@ -95,39 +57,25 @@ export default {
                     </div>
 
                 </div>
-            </div>
-        </div>
-        <div v-if="success" class="alert alert-success" role="alert">
-            Grazie di avermi contattato, ti risponderò entro 48 ore lavorative!
-        </div>
 
-        <form @submit.prevent="sendForm()">
-            <div class="mb-3">
-                <label for="email" class="form-label">La tua email</label>
-                <input type="email" class="form-control" :class="{ 'is-invalid': errors.email }" id="email" v-model="email">
-                <div class="invalid-feedback" v-for="error in errors.email">
-                    {{ error }}
+                <div class="py-5">
+
+                    <AppReviewForm :doctor="doctor">
+    
+                    </AppReviewForm>
+
+                </div>
+
+                <div>
+                    
+                    <AppVoteForm :doctor="doctor">
+    
+                    </AppVoteForm>
+
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Il tuo nome</label>
-                <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" id="name" v-model="name">
-                <div class="invalid-feedback" v-for="error in errors.name">
-                    {{ error }}
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="message">Il tuo messaggio</label>
-                <textarea class="form-control" :class="{ 'is-invalid': errors.message }" id="message"
-                    v-model="message"></textarea>
-                <div class="invalid-feedback" v-for="error in errors.message">
-                    {{ error }}
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary" :disabled="sending">
-                {{ sending ? 'Invio in corso...' : 'Invia messaggio' }}
-            </button>
-        </form>
+        </div>
+        
     </div>
 </template>
 
