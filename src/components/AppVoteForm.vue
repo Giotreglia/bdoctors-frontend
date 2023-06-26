@@ -3,12 +3,12 @@
     import axios from 'axios';
     
     export default {
-        name: 'AppReviewForm',
+        name: 'AppVoteForm',
         props: ['doctor'],
         data() {
             return {
                 store,
-                score: "",
+                star: "",
                 success: false,
                 sending: false,
                 errors: {},
@@ -22,7 +22,7 @@
 
             let splitslug = this.doctor.slug.split('-');
             const payload = {
-                score: this.score,
+                star: this.star,
                 date: luxon.DateTime.now().toFormat("yyyy-MM-dd"),
                 doctor_id: splitslug[splitslug.length - 1]
             }
@@ -33,7 +33,7 @@
                     console.log(payload);
                     if (response.data.success) {
                         //resetto il form
-                        this.score = '';
+                        this.star = '';
                         this.success = true;
                     } else {
                         this.errors = response.data.errors;
@@ -59,9 +59,9 @@
 
         <form @submit.prevent="sendForm()">
             <div class="mb-3">
-                <label for="score" class="form-label">Inserisci Voto</label>
-                <input type="score" class="form-control" :class="{ 'is-invalid': errors.score }" id="score" v-model="score">
-                <div class="invalid-feedback" v-for="error in errors.score">
+                <label for="star" class="form-label">Inserisci Voto</label>
+                <input type="star" class="form-control" :class="{ 'is-invalid': errors.star }" id="star" v-model="star">
+                <div class="invalid-feedback" v-for="error in errors.star">
                     {{ error }}
                 </div>
             </div>
