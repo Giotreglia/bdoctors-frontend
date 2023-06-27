@@ -21,7 +21,7 @@ export default {
             this.errors = {};
 
             const payload = {
-                star: this.star,
+                star_id: this.star,
                 date: luxon.DateTime.now().toFormat("yyyy-MM-dd"),
                 doctor_id: this.doctor.id
             }
