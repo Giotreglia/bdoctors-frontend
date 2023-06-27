@@ -8,7 +8,7 @@ export default {
     data() {
         return {
             store,
-            star: "",
+            star: null,
             success: false,
             sending: false,
             errors: {},
@@ -20,20 +20,19 @@ export default {
             this.sending = true;
             this.errors = {};
 
-            let splitslug = this.doctor.slug.split('-');
             const payload = {
                 star: this.star,
                 date: luxon.DateTime.now().toFormat("yyyy-MM-dd"),
-                doctor_id: splitslug[splitslug.length - 1]
+                doctor_id: this.doctor.id
             }
 
-            axios.post(`${this.store.baseUrl}/api/votes`, payload)
+            axios.post(`${this.store.baseUrl}/doctors/${this.doctor.id}/stars`, payload)
                 .then(response => { //200
 
                     console.log(payload);
                     if (response.data.success) {
                         //resetto il form
-                        this.star = '';
+                        this.star = null;
                         this.success = true;
                     } else {
                         this.errors = response.data.errors;
@@ -59,9 +58,13 @@ export default {
     </div>
 
     <form @submit.prevent="sendForm()">
-        <div class="mb-3">
-            <label for="star" class="form-label">Inserisci Voto</label>
-            <input type="star" class="form-control" :class="{ 'is-invalid': errors.star }" id="star" v-model="star">
+        <div class="mb-3 d-flex gap-1">
+            <div id="stars" v-for="(star, i) in  5 ">
+                <input v-model="this.star" type="radio" class="btn-check" name="btnstar" :id="`btnstar${i + 1}`"
+                    autocomplete="off" :value="`${i + 1}`" :class="{ 'is-invalid': errors.star }">
+                <label class=" btn btn-outline-dark" :for="`btnstar${i + 1}`"><i class="fa-solid fa-star text-warning"
+                        v-for=" littlestar  in  (i + 1) "></i></label>
+            </div>
             <div class="invalid-feedback" v-for="error in errors.star">
                 {{ error }}
             </div>

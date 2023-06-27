@@ -50,12 +50,16 @@ export default {
                             :alt="`immagine-profilo-di${doctor.user.name}`">
                         <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
                             :alt="`immagine-profilo-di${doctor.user.name}`">
-                        <h1 class="card-title mt-3">{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
-                        <h4 class="card-title text-center mb-3">Slug: {{ doctor.slug }}</h4>
+                        <h1 class="card-title mt-3">Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</h1>
+                        <span class="badge rounded-pill text-bg-success fs-6 m-2 d-inline-block"
+                            v-for="specialization in doctor.specializations">{{
+                                specialization.name }}</span>
                         <h4 class="card-title text-center mb-3">Indirizzo: {{ doctor.address }}</h4>
                         <h4 class="card-title text-center mb-3">Email: {{ doctor.user.email }}</h4>
                         <h4 class="text-center mb-4"> Telefono: {{ doctor.phone }}</h4>
-                        <h4 class="text-center mb-4"> Curriculum: {{ doctor.curriculum }}</h4>
+                        <h4 class="text-center mb-4"> Curriculum: <a
+                                :href="`${store.baseUrlnoApi}/storage/${doctor.curriculum}`" target='_blank'>Vedi
+                                curriculum</a></h4>
                     </div>
 
                 </div>
