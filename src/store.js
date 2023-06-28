@@ -7,6 +7,7 @@ export const store = reactive(
         specializations: [],
         inputSpecialization: '',
         doctors: [],
+        sponsoredDoctors: [],
         stars: 0,
         reviews: 0,
     }

@@ -1,17 +1,36 @@
 <script>
 import { store } from '../store.js';
+import AppPremiumDoc from '../components/AppPremiumDoc.vue';
+import axios from 'axios';
+
 export default {
   name: 'AppHome',
   data() {
     return {
       store,
+      doctor: null,
     }
   },
+    components: {
+      AppPremiumDoc
+    },
   methods: {
     getInputSpec(specialization) {
       this.store.inputSpecialization = specialization;
-    }
+    },
+    getSponsoredDoc() {
+      let url = `${this.store.baseUrl}/doctors?specializations=&min_stars=0&min_reviews=0&only_sponsored=1`;
+      axios.get(url)
+        .then(response => {
+          this.store.sponsoredDoctors = response.data.results.data;
+        }
+      )
+    },
   },
+  mounted() {
+    this.getSponsoredDoc();
+
+    }
 }
 
 </script>
@@ -45,6 +64,12 @@ export default {
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="container">
+    <AppPremiumDoc :sponsoredDoctors="sponsoredDoctors">
+
+    </AppPremiumDoc>
   </div>
 </template>
 
