@@ -61,7 +61,7 @@ export default {
                             <h5 class="card-title py-2" v-if="stats.review_count != 0">N. recensioni: {{ stats.review_count
                             }}</h5>
                             <h5 class="card-title py-2" v-else>Nessuna recensione</h5>
-                            <div class="py-2" v-if="stats.average_stars != null">
+                            <div class="py-2" v-if="stats.average_stars != 0">
                                 <h5 class="card-title">Media Voti:</h5>
                                 <div class="btn-outline-dark">
                                     <i class="fa-solid fa-star text-warning"
