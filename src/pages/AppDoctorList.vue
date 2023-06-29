@@ -194,6 +194,7 @@ export default {
     }
     .my_image {
         width: 100%;
+        height: 414px;
     }
 }}
 
@@ -205,6 +206,7 @@ export default {
     }
     .my_image {
         width: 100%;
+        height: 514px;
     }
 }
 }
