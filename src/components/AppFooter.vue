@@ -111,6 +111,17 @@ export default {
     }
 }
 
+@media screen and (max-width: 768px) and (min-width: 575px) {
+    footer {
+        h5 {
+            font-size: 16px;
+        }
+
+        a {
+            font-size: 12px;
+        }
+    }
+}
 
 @media screen and (max-width: 768px) {
     .container.up {
@@ -119,6 +130,10 @@ export default {
         .side {
             width: 50%;
             text-align: center;
+
+            ul {
+                padding-left: 0;
+            }
         }
 
         h5 {
