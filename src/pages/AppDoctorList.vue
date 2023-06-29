@@ -15,16 +15,16 @@ export default {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}&only_sponsored=1`;
             axios.get(url)
                 .then(response => {
-                this.store.sponsoredDoctors = response.data.results.data;
+                    this.store.sponsoredDoctors = response.data.results.data;
                 }
-            )
+                )
         },
         getDoctors() {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}`;
             axios.get(url)
                 .then(response => {
                     this.store.doctors = response.data.results.data;
-                
+
                 })
         },
         getInputSpec(specialization) {
@@ -37,7 +37,7 @@ export default {
         },
     },
     mounted() {
-        this.getDoctors();
+        this.getListDoc();
     }
 }
 
@@ -99,7 +99,7 @@ export default {
         <div class="row">
             <h2>Dottori in evidenza</h2>
             <div v-if="this.store.sponsoredDoctors.length > 0" class="d-flex flex-wrap justify-content-between ms-gap">
-                
+
                 <div class="col-3" v-for=" doctor  in  this.store.sponsoredDoctors ">
                     <div class="card">
                         <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top"
