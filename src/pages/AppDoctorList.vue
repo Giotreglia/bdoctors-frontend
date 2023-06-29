@@ -66,7 +66,7 @@ export default {
             <div class="my_filter d-flex w-100 justify-content-between">
                 <div class="my_vote2 btn-group col-5 d-flex flex-column" role="group"
                     aria-label="Basic radio toggle button group">
-                    <h4>Filtra numero recensioni</h4>
+                    <h4>Filtra per recensioni</h4>
                     <div class="d-flex">
                         <div v-for="(vote, i) in 5">
                             <input v-model="store.reviews" type="radio" class="btn-check" name="btnradio"
@@ -78,15 +78,20 @@ export default {
                         <label class="btn btn-outline-dark" for="btnradio">All</label>
                     </div>
                 </div>
-                <div class=" btn-group col-5 d-flex flex-column my_vote" role="group"
+                <div class=" btn-group col-lg-4 col-xl-6 d-flex flex-column my_vote" role="group"
                     aria-label="Basic radio toggle button group">
                     <h4>Filtra per media voto</h4>
-                    <div class="d-flex">
+                    <div id="stars_container" class="d-flex">
                         <div class="my_stars" v-for="(star, i) in  5 ">
                             <input v-model="store.stars" type="radio" class="btn-check" name="btnstar"
                                 :id="`btnstar${i + 1}`" autocomplete="off" :value="`${i + 1}`" checked>
                             <label class=" btn btn-outline-dark" :for="`btnstar${i + 1}`"><i
                                     class="fa-solid fa-star text-warning" v-for=" littlestar  in  (i + 1) "></i></label>
+                        </div>
+                        <div class="my_numbers" v-for="(star, i) in  5 ">
+                            <input v-model="store.stars" type="radio" class="btn-check" name="btnstar"
+                                :id="`btnstar${i + 1}`" autocomplete="off" :value="`${i + 1}`" checked>
+                            <label class=" btn btn-outline-dark" :for="`btnstar${i + 1}`">{{ i + 1 }}</label>
                         </div>
                         <input v-model="store.stars" type="radio" class="btn-check" name="btnstar" id="btnstar"
                             autocomplete="off" value="0" checked>
@@ -199,6 +204,11 @@ export default {
     border-radius: 12px;
 }
 
+.my_numbers {
+    display: none;
+}
+
+
 @media screen and (max-width: 3000px) {
     .my_vote {
         align-items: flex-end;
@@ -219,6 +229,14 @@ export default {
             width: 100%;
             height: 414px;
         }
+    }
+
+    .my_numbers {
+        display: block;
+    }
+
+    .my_stars {
+        display: none;
     }
 }
 
