@@ -43,5 +43,7 @@ export default {
 
 main {
   margin-top: 90px;
+  background-color: $primary-color;
+  padding: 40px 0;
 }
 </style>

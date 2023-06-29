@@ -28,6 +28,10 @@ export default {
                     aria-expanded="false">
                     Sei un professionista sanitario?
                 </button>
+                <button id="area-personale-alt" class="btn btn-success dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Login
+                </button>
                 <ul class="dropdown-menu">
                     <li v-for="link in  linksMenu "><a class="dropdown-item" :href="link.routeName">{{ link.label }}</a>
                     </li>
@@ -47,9 +51,17 @@ export default {
     background-color: white;
 }
 
+#area-personale-alt {
+    display: none;
+}
+
 @media all and (max-width: 500px) {
     #area-personale {
-        width: 200px;
+        display: none;
+    }
+
+    #area-personale-alt {
+        display: block;
     }
 }
 </style>

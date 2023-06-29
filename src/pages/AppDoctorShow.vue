@@ -42,7 +42,7 @@ export default {
 <template>
     <div class="container">
         <div class="row py-5">
-            <div class="col-10">
+            <div id="my-container" class="col-10 m-auto">
                 <div class="">
 
                     <div v-if="doctor" class="card-body text-center card-single">
@@ -108,5 +108,11 @@ img {
 
 i {
     padding: 0.5rem;
+}
+
+#my-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
 }
 </style>

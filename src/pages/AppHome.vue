@@ -11,9 +11,9 @@ export default {
       doctor: null,
     }
   },
-    components: {
-      AppPremiumDoc
-    },
+  components: {
+    AppPremiumDoc
+  },
   methods: {
     getInputSpec(specialization) {
       this.store.inputSpecialization = specialization;
@@ -24,13 +24,13 @@ export default {
         .then(response => {
           this.store.sponsoredDoctors = response.data.results.data;
         }
-      )
+        )
     },
   },
   mounted() {
     this.getSponsoredDoc();
 
-    }
+  }
 }
 
 </script>
@@ -40,7 +40,7 @@ export default {
 
     <div class="mb-4 rounded-3">
       <div class="container position-relative">
-        <h1 class="display-5 fw-bold text-light">Cerca il tuo dottore</h1>
+        <h1 id="titolo-jumbo" class="display-5 fw-bold text-light">Cerca il tuo dottore</h1>
         <span class="fs-4 d-block mb-5">Cerca tra 200 000 Specialisti e Medici di Medicina Generale.</span>
         <div class="jumbo-img position-absolute">
           <img class="h-100" src="/doc1.png" alt="">
@@ -102,6 +102,24 @@ export default {
 @media all and (max-width: 992px) {
   .jumbo-img {
     display: none;
+  }
+
+  #jumbotron {
+    padding: 150px 0 70px;
+  }
+
+  #titolo-jumbo {
+    font-size: 60px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  #titolo-jumbo {
+    font-size: 60px;
+  }
+
+  #jumbotron {
+    padding: 150px 0 70px;
   }
 }
 </style>
