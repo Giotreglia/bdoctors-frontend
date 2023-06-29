@@ -116,6 +116,15 @@ export default {
                             :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body position-relative">
                             <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
+                            <h5 class="card-title" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
+                            <h5 class="card-title" v-else>Nessuna recensione</h5>
+                            <div v-if="doctor.average_stars !=0">
+                                <h5 class="card-title" >Media Voti:</h5>
+                                <div class="btn-outline-dark">
+                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title" v-else>Nessuna votazione</h5>
                             <p class="card-text">Indirizzo: {{ doctor.address }}</p>
                             <div class="mb-5">
 
@@ -144,6 +153,15 @@ export default {
                             :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body position-relative">
                             <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
+                            <h5 class="card-title" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
+                            <h5 class="card-title" v-else>Nessuna recensione</h5>
+                            <div v-if="doctor.average_stars !=0">
+                                <h5 class="card-title" >Media Voti:</h5>
+                                <div class="btn-outline-dark">
+                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title" v-else>Nessuna votazione</h5>
                             <p class="card-text">Indirizzo: {{ doctor.address }}</p>
                             <div class="mb-5">
 
