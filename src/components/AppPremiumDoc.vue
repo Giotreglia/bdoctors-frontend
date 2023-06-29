@@ -74,6 +74,10 @@
         object-fit: cover;
     }
 
+    .my_height {
+        width: 100%;
+    }
+
     @media screen and (max-width: 1200px) {
     .ms-col {
         width: calc((100% / 2) - 12px);
