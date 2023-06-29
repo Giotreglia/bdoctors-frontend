@@ -43,23 +43,36 @@ export default {
     <div class="container">
         <div class="row py-5">
             <div class="col-10">
-                <div class="card rounded-5 bg-info-subtle">
+                <div class="">
 
                     <div v-if="doctor" class="card-body text-center card-single">
                         <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top"
                             :alt="`immagine-profilo-di${doctor.user.name}`">
                         <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
                             :alt="`immagine-profilo-di${doctor.user.name}`">
-                        <h1 class="card-title mt-3">Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</h1>
+                        <h1 class="card-title mt-3 name-surname">Dr. {{ doctor.user.name }} {{ doctor.user.surname }}</h1>
                         <span class="badge rounded-pill text-bg-success fs-6 m-2 d-inline-block"
                             v-for="specialization in doctor.specializations">{{
                                 specialization.name }}</span>
-                        <h4 class="card-title text-center mb-3">Indirizzo: {{ doctor.address }}</h4>
-                        <h4 class="card-title text-center mb-3">Email: {{ doctor.user.email }}</h4>
-                        <h4 class="text-center mb-4"> Telefono: {{ doctor.phone }}</h4>
-                        <h4 class="text-center mb-4"> Curriculum: <a
+
+                        <div class="card-title text-center pt-2">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <h5 class="d-inline-block">Indirizzo:</h5> {{ doctor.address }}
+                        </div>
+                        <div class="card-title text-center pt-2">
+                            <i class="fa-solid fa-envelope"></i>
+                            <h5 class="d-inline-block">Email:</h5> {{ doctor.user.email }}
+                        </div>
+                        <div class="text-center py-2">
+                            <i class="fa-solid fa-phone"></i>
+                            <h5 class="d-inline-block">Telefono:</h5> {{ doctor.phone }}
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <h5 class="d-inline-block">Curriculum Vitae:</h5> <a
                                 :href="`${store.baseUrlnoApi}/storage/${doctor.curriculum}`" target='_blank'>Vedi
-                                curriculum</a></h4>
+                                curriculum</a>
+                        </div>
                     </div>
 
                 </div>
@@ -91,5 +104,9 @@ img {
     height: 250px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+i {
+    padding: 0.5rem;
 }
 </style>
