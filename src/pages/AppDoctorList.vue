@@ -63,8 +63,8 @@ export default {
                     </ul>
                 </div>
             </div>
-            <div class="d-flex w-100 justify-content-between">
-                <div class="btn-group col-5 d-flex flex-column" role="group" aria-label="Basic radio toggle button group">
+            <div class="my_filter d-flex w-100 justify-content-between">
+                <div class="my_vote2 btn-group col-5 d-flex flex-column" role="group" aria-label="Basic radio toggle button group">
                     <h4>Filtra numero recensioni</h4>
                     <div class="d-flex">
                         <div v-for="(vote, i) in 5">
@@ -77,11 +77,11 @@ export default {
                         <label class="btn btn-outline-dark" for="btnradio">All</label>
                     </div>
                 </div>
-                <div class="btn-group col-5 d-flex flex-column align-items-end" role="group"
+                <div class=" btn-group col-5 d-flex flex-column my_vote" role="group"
                     aria-label="Basic radio toggle button group">
                     <h4>Filtra per media voto</h4>
                     <div class="d-flex">
-                        <div v-for="(star, i) in  5 ">
+                        <div class="my_stars" v-for="(star, i) in  5 ">
                             <input v-model="store.stars" type="radio" class="btn-check" name="btnstar"
                                 :id="`btnstar${i + 1}`" autocomplete="off" :value="`${i + 1}`" checked>
                             <label class=" btn btn-outline-dark" :for="`btnstar${i + 1}`"><i
@@ -186,6 +186,25 @@ export default {
         width: 100%;
     }
 
+    @media screen and (max-width: 3000px) {
+        .my_vote {
+        align-items: flex-end;
+        
+        
+    }}
+
+    @media screen and (max-width: 1200px) {
+.ms-col {
+    width: calc((100% / 2) - 12px);
+    .my_height {
+        width: 100%;
+    }
+    .my_image {
+        width: 100%;
+        height: 414px;
+    }
+}}
+
 @media screen and (max-width: 1200px) {
 .ms-col {
     width: calc((100% / 2) - 12px);
@@ -199,7 +218,25 @@ export default {
 }}
 
 @media screen and (max-width: 767px) {
-.ms-col {
+
+    .my_filter {
+        flex-direction: column;
+    }
+    .my_vote2 {
+        width: 100%;
+        padding-bottom: 40px;
+        align-items: center;
+        text-align: center;
+    }
+    .my_vote {
+        width: 100%;
+        padding-bottom: 40px;
+        align-items: center;
+        text-align: center;
+        
+        
+    }
+    .ms-col {
     width: 100%;
     .my_height {
         width: 100%;
@@ -209,5 +246,6 @@ export default {
         height: 514px;
     }
 }
+
 }
 </style>
