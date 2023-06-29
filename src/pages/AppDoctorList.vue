@@ -116,15 +116,20 @@ export default {
                             :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body position-relative">
                             <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
-                            <h5 class="card-title" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
-                            <h5 class="card-title" v-else>Nessuna recensione</h5>
-                            <div v-if="doctor.average_stars !=0">
-                                <h5 class="card-title" >Media Voti:</h5>
+                            <span class="card-title" v-if="doctor.review_count != 0">N. recensioni: {{ doctor.review_count
+                            }}
+                            </span>
+                            <span class="card-title d-block" v-else>Nessuna recensione</span>
+                            <div v-if="doctor.average_stars != 0">
+                                <span class="card-title">Media Voti:</span>
                                 <div class="btn-outline-dark">
-                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                    <i class="fa-solid fa-star text-warning"
+                                        v-for=" littlestar  in  doctor.average_stars"></i>
+                                    <i class="fa-regular fa-star text-warning"
+                                        v-for=" littlestar  in  (5 - doctor.average_stars)"></i>
                                 </div>
                             </div>
-                            <h5 class="card-title" v-else>Nessuna votazione</h5>
+                            <span class="card-title d-block" v-else>Nessuna votazione</span>
                             <p class="card-text">Indirizzo: {{ doctor.address }}</p>
                             <div class="mb-5">
 
@@ -153,15 +158,20 @@ export default {
                             :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <div class="card-body position-relative">
                             <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
-                            <h5 class="card-title" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
-                            <h5 class="card-title" v-else>Nessuna recensione</h5>
-                            <div v-if="doctor.average_stars !=0">
-                                <h5 class="card-title" >Media Voti:</h5>
+                            <span class="card-title" v-if="doctor.review_count != 0">N. recensioni: {{ doctor.review_count
+                            }}
+                            </span>
+                            <span class="card-title d-block" v-else>Nessuna recensione</span>
+                            <div v-if="doctor.average_stars != 0">
+                                <span class="card-title">Media Voti:</span>
                                 <div class="btn-outline-dark">
-                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                    <i class="fa-solid fa-star text-warning"
+                                        v-for=" littlestar  in  doctor.average_stars"></i>
+                                    <i class="fa-regular fa-star text-warning"
+                                        v-for=" littlestar  in  (5 - doctor.average_stars)"></i>
                                 </div>
                             </div>
-                            <h5 class="card-title" v-else>Nessuna votazione</h5>
+                            <span class="card-title d-block" v-else>Nessuna votazione</span>
                             <p class="card-text">Indirizzo: {{ doctor.address }}</p>
                             <div class="mb-5">
 

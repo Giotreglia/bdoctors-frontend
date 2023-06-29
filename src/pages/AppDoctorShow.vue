@@ -12,6 +12,7 @@ export default {
         return {
             store,
             doctor: null,
+            stats: null
         }
     },
     components: {
@@ -26,7 +27,8 @@ export default {
             .then(response => {
                 if (response.data.success == true) {
                     this.doctor = response.data.doctor;
-                    console.log(this.doctor);
+                    this.stats = response.data;
+                    console.log(this.stats.average_stars);
 
 
                 } else {
@@ -56,12 +58,16 @@ export default {
                                 specialization.name }}</span>
 
                         <div class="card-title text-center pt-2">
-                            <h5 class="card-title py-2" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
+                            <h5 class="card-title py-2" v-if="stats.review_count != 0">N. recensioni: {{ stats.review_count
+                            }}</h5>
                             <h5 class="card-title py-2" v-else>Nessuna recensione</h5>
-                            <div class="py-2" v-if="doctor.average_stars !=0">
-                                <h5 class="card-title" >Media Voti:</h5>
+                            <div class="py-2" v-if="stats.average_stars != null">
+                                <h5 class="card-title">Media Voti:</h5>
                                 <div class="btn-outline-dark">
-                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                    <i class="fa-solid fa-star text-warning"
+                                        v-for=" littlestar  in  stats.average_stars"></i>
+                                    <i class="fa-regular fa-star text-warning"
+                                        v-for=" littlestar  in  (5 - stats.average_stars)"></i>
                                 </div>
                             </div>
                             <h5 class="card-title py-2" v-else>Nessuna votazione</h5>

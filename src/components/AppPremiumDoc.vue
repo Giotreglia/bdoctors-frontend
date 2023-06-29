@@ -1,8 +1,8 @@
 <script>
-    import { store } from '../store.js';
-    import axios from 'axios';
+import { store } from '../store.js';
+import axios from 'axios';
 
-    export default {
+export default {
     name: 'AppPremiumDoc',
     props: ['doctor'],
     data() {
@@ -13,105 +13,115 @@
             errors: {},
         }
     }
-    }
+}
 </script>
 
 <template>
     <div class="row">
-            <h2 class="py-3 text-success">Dottori in evidenza</h2>
-            <div v-if="this.store.sponsoredDoctors.length > 0" class="d-flex flex-wrap ms-gap">
-                
-                <div class="ms-col d-flex align-items-stretch " v-for=" doctor  in  this.store.sponsoredDoctors ">
-                    <div class="card my_height ">
-                        <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`" class="card-img-top my_image"
-                            :alt="`immagine-profilo-di-${doctor.user.name}`">
-                        <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
-                            :alt="`immagine-profilo-di-${doctor.user.name}`">
-                        <div class="card-body position-relative">
-                            <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
-                            <h5 class="card-title" v-if="doctor.review_count !=0">N. recensioni: {{ doctor.review_count }}</h5>   
-                            <h5 class="card-title" v-else>Nessuna recensione</h5>
-                            <div v-if="doctor.average_stars !=0">
-                                <h5 class="card-title" >Media Voti:</h5>
-                                <div class="btn-outline-dark">
-                                    <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
-                                </div>
-                            </div>
-                            <h5 class="card-title" v-else>Nessuna votazione</h5>
-                            <p class="card-text">Indirizzo: {{ doctor.address }}</p>
-                            <div class="mb-5">
+        <h2 class="py-3 text-light">Dottori in evidenza</h2>
+        <div v-if="this.store.sponsoredDoctors.length > 0" class="d-flex flex-wrap ms-gap">
 
-                                <span class="badge rounded-pill text-bg-success fs-6 me-2 my-2 d-inline-block" v-for="specialization in doctor.specializations">{{specialization.name }}</span>
-                                    
+            <div class="ms-col d-flex align-items-stretch " v-for=" doctor  in  this.store.sponsoredDoctors ">
+                <div class="card my_height ">
+                    <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`"
+                        class="card-img-top my_image" :alt="`immagine-profilo-di-${doctor.user.name}`">
+                    <img v-else src="https://www.diamedica.it/wp-content/uploads/2018/12/dottore-1024x1024.jpg"
+                        :alt="`immagine-profilo-di-${doctor.user.name}`">
+                    <div class="card-body position-relative">
+                        <h3 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h3>
+                        <span class="card-title" v-if="doctor.review_count != 0">N. recensioni: {{ doctor.review_count
+                        }}</span>
+                        <span class="card-title d-block" v-else>Nessuna recensione</span>
+                        <div v-if="doctor.average_stars != 0">
+                            <span class="card-title">Media Voti:</span>
+                            <div class="btn-outline-dark">
+                                <i class="fa-solid fa-star text-warning" v-for=" littlestar  in  doctor.average_stars"></i>
+                                <i class="fa-regular fa-star text-warning"
+                                    v-for=" littlestar  in  (5 - doctor.average_stars)"></i>
                             </div>
-                            <router-link :to="{ name: 'doctor_page', params: { slug: doctor.slug } }"
-                                class="btn ms-bg-primary position-absolute my_position">Vedi dettaglio Dottore</router-link>
                         </div>
+                        <span class="card-title d-block" v-else>Nessuna votazione</span>
+                        <p class="card-text">Indirizzo: {{ doctor.address }}</p>
+                        <div class="mb-5">
+
+                            <span class="badge rounded-pill text-bg-success fs-6 me-2 my-2 d-inline-block"
+                                v-for="specialization in doctor.specializations">{{ specialization.name }}</span>
+
+                        </div>
+                        <router-link :to="{ name: 'doctor_page', params: { slug: doctor.slug } }"
+                            class="btn ms-bg-primary position-absolute my_position">Vedi dettaglio Dottore</router-link>
                     </div>
                 </div>
             </div>
-            <div v-else>
-                <h1>Non ci sono dottori sponsorizzati</h1>
-            </div>
         </div>
+        <div v-else>
+            <h1>Non ci sono dottori sponsorizzati</h1>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-    @import '../styles/partials/_variables.scss';
+@import '../styles/partials/_variables.scss';
 
-    .ms-bg-primary {
-        background-color: $primary-color;
-    }
-    .ms-bg-primary:hover {
-        background-color: darkgoldenrod;
-    }
-    .ms-gap {
-        gap: 12px;
-    }
+.ms-bg-primary {
+    background-color: $primary-color;
+}
 
-    .ms-col {
-        width: calc((100% / 4) - 12px);
-    }
+.ms-bg-primary:hover {
+    background-color: darkgoldenrod;
+}
 
-    .my_position {
-        bottom: 10px;
-        left: 10px;
-    }
+.ms-gap {
+    gap: 12px;
+}
 
-    .my_image {
-        height: 310px;
-        object-fit: cover;
-    }
+.ms-col {
+    width: calc((100% / 4) - 12px);
+}
 
-    .my_height {
-        width: 100%;
-    }
+.my_position {
+    bottom: 10px;
+    left: 10px;
+}
 
-    @media screen and (max-width: 1200px) {
+.my_image {
+    height: 310px;
+    object-fit: cover;
+}
+
+.my_height {
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
     .ms-col {
         width: calc((100% / 2) - 12px);
+
         .my_height {
             width: 100%;
         }
+
         .my_image {
             width: 100%;
         }
     }
 
     @media screen and (max-width: 767px) {
-    .ms-col {
-        width: 100%;
-        .my_height {
+        .ms-col {
             width: 100%;
-        }
-        .my_image {
-            width: 100%;
-            height: 514px;
+
+            .my_height {
+                width: 100%;
+            }
+
+            .my_image {
+                width: 100%;
+                height: 514px;
+            }
         }
     }
-}
 
 
-    
+
 }
 </style>
