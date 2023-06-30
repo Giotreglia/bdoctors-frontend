@@ -7,23 +7,41 @@ export default {
     data() {
         return {
             store,
-            imgUrl: ""
+            imgUrl: "",
+            currentPage: 1,
+            lastPage: null,
         }
     },
     methods: {
-        getSponsoredDoc() {
+        getSponsoredDoc(gotoPage) {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}&only_sponsored=1`;
-            axios.get(url)
+            axios.get(url,
+            {
+                params: {
+                    page: gotoPage
+                }
+            }
+            )
                 .then(response => {
                     this.store.sponsoredDoctors = response.data.results.data;
+                    this.currentPage = response.data.results.current_page;
+                    this.lastPage = response.data.results.last_page;
                 }
                 )
         },
-        getDoctors() {
+        getDoctors(gotoPage) {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}`;
-            axios.get(url)
+            axios.get(url,
+            {
+                params: {
+                    page: gotoPage
+                }
+            }               
+            )
                 .then(response => {
                     this.store.doctors = response.data.results.data;
+                    his.currentPage = response.data.results.current_page;
+                    this.lastPage = response.data.results.last_page;
 
                 })
         },
@@ -31,13 +49,13 @@ export default {
             this.store.inputSpecialization = specialization;
 
         },
-        getListDoc() {
-            this.getSponsoredDoc();
-            this.getDoctors();
+        getListDoc(gotoPage) {
+            this.getSponsoredDoc(gotoPage);
+            this.getDoctors(gotoPage);
         },
     },
     mounted() {
-        this.getListDoc();
+        this.getListDoc(this.currentPage);
     }
 }
 
@@ -190,6 +208,18 @@ export default {
                 <h1>Non ci sono dottori</h1>
             </div>
         </div>
+
+       <nav aria-label="Page navigation example">
+        <ul class="pagination ms-5 mt-5">
+          <li class="page-item"><button class="page-link" @click="getListDoc(currentPage - 1)" :class="{'disabled' : currentPage == 1}">Previous</button></li>
+          
+          <li class="page-item" v-for="page in lastPage" :class="{'active': page==currentPage}">
+            <button @click="getListDoc(page)" :class="{'page-link': true}">{{ page }}</button>
+          </li>
+    
+          <li class="page-item"><button class="page-link" @click="getListDoc(currentPage + 1)" :class="{'disabled' : currentPage == lastPage}">Next</button></li>
+        </ul>
+      </nav>
     </div>
 </template>
 
