@@ -15,7 +15,6 @@ export default {
             success: false,
             sending: false,
             errors: {
-                content: []
             }
         };
     },
@@ -59,11 +58,6 @@ export default {
         },
     },
     watch: {
-        content() {
-            if (this.email === '') {
-                this.errors.email = ['field required'];
-            }
-        },
         email() {
             if (this.email === '') {
                 this.errors.email = ['field required'];
