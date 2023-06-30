@@ -16,11 +16,11 @@ export default {
         getSponsoredDoc(gotoPage) {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}&only_sponsored=1`;
             axios.get(url,
-            {
-                params: {
-                    page: gotoPage
+                {
+                    params: {
+                        page: gotoPage
+                    }
                 }
-            }
             )
                 .then(response => {
                     this.store.sponsoredDoctors = response.data.results.data;
@@ -32,11 +32,11 @@ export default {
         getDoctors(gotoPage) {
             let url = `${this.store.baseUrl}/doctors?specializations=${this.store.inputSpecialization}&min_stars=${this.store.stars}&min_reviews=${this.store.reviews}`;
             axios.get(url,
-            {
-                params: {
-                    page: gotoPage
+                {
+                    params: {
+                        page: gotoPage
+                    }
                 }
-            }               
             )
                 .then(response => {
                     this.store.doctors = response.data.results.data;
@@ -214,17 +214,20 @@ export default {
             <span>Nessun risultato</span>
         </div>
 
-       <nav aria-label="Page navigation example">
-        <ul class="pagination ms-5 mt-5">
-          <li class="page-item"><button class="page-link" @click="getListDoc(currentPage - 1)" :class="{'disabled' : currentPage == 1}">Previous</button></li>
-          
-          <li class="page-item" v-for="page in lastPage" :class="{'active': page==currentPage}">
-            <button @click="getListDoc(page)" :class="{'page-link': true}">{{ page }}</button>
-          </li>
-    
-          <li class="page-item"><button class="page-link" @click="getListDoc(currentPage + 1)" :class="{'disabled' : currentPage == lastPage}">Next</button></li>
-        </ul>
-      </nav>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center ms-5 mt-5">
+                <li class="page-item"><button class="page-link" @click="getListDoc(currentPage - 1)"
+                        :class="{ 'disabled': currentPage == 1 }"><span aria-hidden="true">&laquo;</span></button></li>
+
+                <li class="page-item" v-for="page in lastPage" :class="{ 'active': page == currentPage }">
+                    <button @click="getListDoc(page)" :class="{ 'page-link': true }">{{ page }}</button>
+                </li>
+
+                <li class="page-item"><button class="page-link" @click="getListDoc(currentPage + 1)"
+                        :class="{ 'disabled': currentPage == lastPage }"><span aria-hidden="true">&raquo;</span></button>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -277,6 +280,12 @@ export default {
 
 .ms_badge {
     border-bottom-left-radius: 12px;
+}
+
+.page-item.active .page-link {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+    color: white;
 }
 
 
