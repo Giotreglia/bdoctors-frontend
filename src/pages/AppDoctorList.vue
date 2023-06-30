@@ -40,7 +40,7 @@ export default {
             )
                 .then(response => {
                     this.store.doctors = response.data.results.data;
-                    his.currentPage = response.data.results.current_page;
+                    this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
 
                 })
