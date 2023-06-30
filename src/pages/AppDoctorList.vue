@@ -108,7 +108,7 @@ export default {
             <div v-if="this.store.sponsoredDoctors.length > 0" class="d-flex flex-wrap ms-gap">
 
                 <div class="ms-col d-flex align-items-stretch " v-for=" doctor  in  this.store.sponsoredDoctors ">
-                    <div class="card my_height ">
+                    <div class="card my_height border border-4 border-success">
                         <img v-if="doctor.photo" :src="`${store.baseUrlnoApi}/storage/${doctor.photo}`"
                             class="card-img-top my_image" :alt="`immagine-profilo-di-${doctor.user.name}`">
                         <img v-else class="card-img-top my_image"
@@ -234,6 +234,10 @@ export default {
 
 .my_numbers {
     display: none;
+}
+
+.sponsoredCard {
+    border: 4px solid $primary-color;
 }
 
 
