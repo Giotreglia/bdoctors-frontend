@@ -52,13 +52,6 @@ export default {
                 });
 
         }
-    },
-    watch: {
-        content() {
-            if (this.content === '') {
-                this.errors.content = ['field required'];
-            }
-        }
     }
 }
 
