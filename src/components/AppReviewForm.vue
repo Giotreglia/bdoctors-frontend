@@ -86,7 +86,7 @@ export default {
                 {{ error }}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" :disabled="sending">
+        <button type="submit" class="btn btn-primary" :disabled="content ? false : true">
             {{ sending ? 'Invio in corso...' : 'Invia recensione' }}
         </button>
     </form>

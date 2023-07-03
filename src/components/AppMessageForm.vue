@@ -73,14 +73,14 @@ export default {
         <div class="mb-3">
             <label for="email" class="form-label">La tua email *</label>
             <input type="email" class="form-control" :class="{ 'is-invalid': errors.email }" id="email" v-model="email">
-            <div class="invalid-feedback" v-for="error in errors.email">
+            <div class="invalid-feedback" v-for="  error   in   errors.email  ">
                 {{ error }}
             </div>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Il tuo nome</label>
             <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" id="name" v-model="name">
-            <div class="invalid-feedback" v-for="error in errors.name">
+            <div class="invalid-feedback" v-for="  error   in   errors.name  ">
                 {{ error }}
             </div>
         </div>
@@ -88,7 +88,7 @@ export default {
             <label for="surname" class="form-label">Il tuo cognome</label>
             <input type="text" class="form-control" :class="{ 'is-invalid': errors.surname }" id="surname"
                 v-model="surname">
-            <div class="invalid-feedback" v-for="error in errors.surname">
+            <div class="invalid-feedback" v-for="  error   in   errors.surname  ">
                 {{ error }}
             </div>
         </div>
@@ -96,11 +96,11 @@ export default {
             <label for="content">Il tuo messaggio *</label>
             <textarea class="form-control" :class="{ 'is-invalid': errors.content }" id="content"
                 v-model="content"></textarea>
-            <div class="invalid-feedback" v-for="error in errors.content">
+            <div class="invalid-feedback" v-for="  error   in   errors.content  ">
                 {{ error }}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" disabled>
+        <button type="submit" class="btn btn-primary" :disabled="email && content ? false : true">
             {{ sending ? 'Invio in corso...' : 'Invia messaggio' }}
         </button>
     </form>
