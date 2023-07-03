@@ -84,9 +84,11 @@ export default {
                         </div>
                         <div class="text-center">
                             <i class="fa-solid fa-file-pdf"></i>
-                            <h5 class="d-inline-block">Curriculum Vitae:</h5> <a
-                                :href="`${store.baseUrlnoApi}/storage/${doctor.curriculum}`" target='_blank'>Vedi
+                            <h5 class="d-inline-block">Curriculum Vitae:</h5>
+                            <a v-if="doctor.curriculum" :href="`${store.baseUrlnoApi}/storage/${doctor.curriculum}`"
+                                target='_blank'>Vedi
                                 curriculum</a>
+                            <span v-else> nessun curriculm</span>
                         </div>
                     </div>
 
