@@ -79,7 +79,7 @@ export default {
             </div>
         </div>
         <div class="mb-3">
-            <label for="content">La tua recensione</label>
+            <label for="content">La tua recensione *</label>
             <textarea class="form-control" :class="{ 'is-invalid': errors.content }" id="content"
                 v-model="content"></textarea>
             <div class="invalid-feedback" v-for="error in errors.content">
@@ -90,6 +90,7 @@ export default {
             {{ sending ? 'Invio in corso...' : 'Invia recensione' }}
         </button>
     </form>
+    <p class="mt-2">* indica i campi obbligatori</p>
 </template>
 
 <style lang="scss" scoped></style>

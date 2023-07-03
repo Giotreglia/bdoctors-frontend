@@ -57,18 +57,6 @@ export default {
                 });
         },
     },
-    watch: {
-        email() {
-            if (this.email === '') {
-                this.errors.email = ['field required'];
-            }
-        },
-        content() {
-            if (this.content === '') {
-                this.errors.content = ['field required'];
-            }
-        }
-    }
 };
 
 </script>
@@ -83,7 +71,7 @@ export default {
     <form @submit.prevent="sendForm()">
 
         <div class="mb-3">
-            <label for="email" class="form-label">La tua email</label>
+            <label for="email" class="form-label">La tua email *</label>
             <input type="email" class="form-control" :class="{ 'is-invalid': errors.email }" id="email" v-model="email">
             <div class="invalid-feedback" v-for="error in errors.email">
                 {{ error }}
@@ -105,15 +93,16 @@ export default {
             </div>
         </div>
         <div class="mb-3">
-            <label for="content">Il tuo messaggio</label>
+            <label for="content">Il tuo messaggio *</label>
             <textarea class="form-control" :class="{ 'is-invalid': errors.content }" id="content"
                 v-model="content"></textarea>
             <div class="invalid-feedback" v-for="error in errors.content">
                 {{ error }}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" :disabled="sending">
+        <button type="submit" class="btn btn-primary" disabled>
             {{ sending ? 'Invio in corso...' : 'Invia messaggio' }}
         </button>
     </form>
+    <p class="mt-2">* indica i campi obbligatori</p>
 </template>
